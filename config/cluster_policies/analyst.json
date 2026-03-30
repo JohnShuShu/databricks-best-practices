@@ -1,0 +1,45 @@
+{
+  "name": "Analyst",
+  "description": "Restricted policy for analysts with lower resource limits",
+  "definition": {
+    "spark_version": {
+      "type": "fixed",
+      "value": "14.3.x-scala2.12"
+    },
+    "autotermination_minutes": {
+      "type": "range",
+      "minValue": 10,
+      "maxValue": 60,
+      "defaultValue": 30
+    },
+    "custom_tags.CostCenter": {
+      "type": "fixed",
+      "value": "analytics"
+    },
+    "custom_tags.Owner": {
+      "type": "regex",
+      "pattern": ".*@company\\.com"
+    },
+    "num_workers": {
+      "type": "range",
+      "minValue": 1,
+      "maxValue": 8
+    },
+    "node_type_id": {
+      "type": "allowlist",
+      "values": [
+        "Standard_D4ds_v5",
+        "Standard_D8ds_v5"
+      ],
+      "defaultValue": "Standard_D4ds_v5"
+    },
+    "driver_node_type_id": {
+      "type": "fixed",
+      "value": "Standard_D4ds_v5"
+    },
+    "data_security_mode": {
+      "type": "fixed",
+      "value": "USER_ISOLATION"
+    }
+  }
+}
